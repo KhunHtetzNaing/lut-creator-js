@@ -83,7 +83,7 @@ class Hald {
                 };
                 imageHald.src = String(imageReader.result);
             };
-            imageReader.readAsDataURL(file[0]);
+            imageReader.readAsDataURL(file);
         }
         function inputHald(lutTitle) {
             let selectFile = document.createElement('input');
