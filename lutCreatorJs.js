@@ -85,14 +85,37 @@ class Hald {
             };
             imageReader.readAsDataURL(file);
         }
+        
         function inputHald(lutTitle) {
             let selectFile = document.createElement('input');
             selectFile.type = 'file';
+            // selectFile.webkitdirectory = true;
+            selectFile.multiple = true;
             selectFile.click();
             selectFile.onchange = (e) => {
-                loadImage(selectFile.files, lutTitle);
+                var files = selectFile.files,
+                    files_length = files.length;
+                if (files_length > 1) {
+                    for (var i = 0; i < files_length; i++) {
+                        letFuck(files[i], lutTitle);
+                    }
+                } else {
+                    letFuck(files[0], lutTitle);
+                }
+
             };
         }
+
+        function letFuck(lutFile, lutTitle) {
+            var name = lutFile.name;
+            lutTitle = name;
+            var fileExt = name.split('.').pop();
+            if (fileExt == "png") {
+                console.log(lutTitle, name, fileExt);
+                loadImage(lutFile, lutTitle);
+            }
+        }
+        
         inputHald(lutTitle);
     }
 }
